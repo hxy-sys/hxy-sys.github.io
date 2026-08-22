@@ -1,60 +1,93 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>祝生日快乐</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  background:#1a1a2e;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-}
-h1{
-  color:#ffd700;
-  font-size:42px;
-  text-align:center;
-  z-index:10;
-}
-.heart{
-  position:absolute;
-  background:#ff4757;
-  width:20px;height:20px;
-  transform:rotate(45deg);
-  animation:float 6s infinite ease-in-out;
-}
-.heart:before,.heart:after{
-  content:"";
-  width:20px;height:20px;
-  background:#ff4757;
-  border-radius:50%;
-  position:absolute;
-}
-.heart:before{top:-10px;left:0;}
-.heart:after{top:0;right:-10px;}
-@keyframes float{
-  0%{transform:rotate(45deg) translateY(0);opacity:1;}
-  100%{transform:rotate(45deg) translateY(-1000px);opacity:0;}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>程浩楠 生日快乐</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(#1a0329, #310d4d);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: "微软雅黑", sans-serif;
+        }
+        .title {
+            color: #fff;
+            font-size: 48px;
+            text-align: center;
+            text-shadow: 0 0 15px #ff4d94;
+            margin-bottom: 30px;
+            animation: textBeat 1.2s infinite alternate;
+        }
+        .sub-text {
+            color: #ffd0e3;
+            font-size: 22px;
+            margin-top: 15px;
+        }
+        @keyframes textBeat {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.08); }
+        }
+        /* 爱心样式 */
+        .heart {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: #ff4d94;
+            transform: rotate(-45deg);
+            animation: heartJump 1s infinite alternate, heartFloat 6s linear infinite;
+        }
+        .heart::before, .heart::after {
+            content: "";
+            width: 25px;
+            height: 25px;
+            background: #ff4d94;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .heart::before { top: -12px; left: 0; }
+        .heart::after { top: 0; right: -12px; }
+        @keyframes heartJump {
+            0% { transform: rotate(-45deg) translateY(0); }
+            100% { transform: rotate(-45deg) translateY(-15px); }
+        }
+        @keyframes heartFloat {
+            0% { opacity: 1; bottom: -10%; }
+            100% { opacity: 0; bottom: 110%; }
+        }
+    </style>
 </head>
 <body>
-<h1>祝 陈梓涵 生日快乐</h1>
-<script>
-function createHeart(){
-  const heart = document.createElement('div');
-  heart.classList.add('heart');
-  heart.style.left = Math.random()*100+'vw';
-  heart.style.animationDuration = Math.random()*3+4+'s';
-  document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(),7000);
-}
-setInterval(createHeart,300);
-</script>
+    <h1 class="title">程浩楠，生日快乐！</h1>
+    <p class="sub-text">岁岁欢喜，万事顺意</p>
+
+    <script>
+        // 自动生成跳动爱心
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            // 随机位置、大小、速度
+            const size = Math.random() * 20 + 15;
+            heart.style.width = size + "px";
+            heart.style.height = size + "px";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 4 + 3) + "s";
+            document.body.appendChild(heart);
+            // 爱心消失后删除
+            setTimeout(() => heart.remove(), 6000);
+        }
+        // 持续生成爱心
+        setInterval(createHeart, 200);
+    </script>
 </body>
 </html>
